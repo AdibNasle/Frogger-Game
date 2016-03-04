@@ -4,6 +4,7 @@ var PlayerX = 200;
 var PlayerY = 400;
 var PlayerScore = 0;
 
+
 // Enemies our player must avoid
 var Enemy = function(startingX, startingY) {
     // Variables applied to each of our instances go here,
@@ -86,7 +87,7 @@ Player.prototype.render= function(){
 // decreased by one.
 Player.prototype.checkCollisions = function() {
 
-    for (var i=0; i<allEnemies.length; i++)
+    for (var i = 0; i < allEnemies.length; i++)
     {
         if (this.x < allEnemies[i].x + 40 && 
             this.x + 40 > allEnemies[i].x && 
@@ -102,6 +103,7 @@ Player.prototype.checkCollisions = function() {
 
 // function to move player on board.
 // if player reaches the top score is increased by 1
+// and the player position is reset
 Player.prototype.handleInput = function(keyPressed){
 
     if (this.x < 20 || this.y < -30 || this.x > 400 || this.y > 420){
@@ -119,8 +121,9 @@ Player.prototype.handleInput = function(keyPressed){
     else if (keyPressed == "down"){
         this.y += 30;
     }
-        if (player.y < 0 && player.y > -30){
+        if (this.y < 0 && this.y > -30){
         PlayerScore++;
+        this.reset();
     }
 
 };
